@@ -45,4 +45,24 @@
     "[html]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "editor.snippetSuggestions": "bottom",
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "cSpell.words": [
+        "compteur",
+        "etre",
+        "fonction",
+        "haut",
+        "ligne",
+        "peut",
+        "retourne",
+        "rien",
+        "siginifie",
+        "signifie",
+        "suis"
+    ]
 }
