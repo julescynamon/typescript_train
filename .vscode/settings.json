@@ -7,7 +7,7 @@
     "editor.occurrencesHighlight": false,
     "editor.suggest.insertMode": "replace",
     "editor.acceptSuggestionOnCommitCharacter": false,
-    "files.autoSave": "onFocusChange",
+    // "files.autoSave": "onFocusChange",
     "workbench.tree.indent": 18,
     "workbench.tree.renderIndentGuides": "always",
     "workbench.editor.enablePreview": false,

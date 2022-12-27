@@ -16,7 +16,7 @@ const user: {firstName: string, lastName: string, age: number} = {
 const a2: Array<number> = [1, 2, 3];
 const a3: number[] = [1, 2, 3];
 const a4: Array<string> = ["a", "b", "c"];
-const a5: string[] = ["a", "b", "c"]; 
+const a5: string[] = ["a", "b", "c"];
 const date: Date = new Date();
 // void siginifie que la fonction ne retourne rien
 const cb: Function = (e: MouseEvent): void {
@@ -66,7 +66,7 @@ function consoleSize<Type extends {length: number}> (arg: Type): Type {
 
 const aab = consoleSize(3);
 
-// type qui dépend d'un autre 
+// type qui dépend d'un autre
 type Key = keyof Users;
 
 // extraire un type a partir de quelquechose qui existe
@@ -171,7 +171,7 @@ function a(arg: unknown) {
 // reproduire le type utilitaire Pick (selectioner seulement certaine clef pour renvoyer un objet qui correspond au clef indiquer)
 type MyPick<T, K extends keyof T> = {
     [Key in K]: T[Key];
-} 
+}
 
 // transformer un objet pour que toutes ces propriétées soit passer en readOnly
 type MyReadOnly<T> = {
@@ -200,3 +200,31 @@ type If<C extends boolean, T, F> = C extends true ? T : F;
 
 // impleter le type Concat pour concatainer 2 tableaux
 type Concat<T extends any[], U extends any[]> = [...T, ...U];
+
+// Implementer la fonction Array.includes de JavaScript dans le système de type. Un type prend les deux arguments. La sortie devrait être un booléen vrai ou faux.
+type IsEqual<T, U> = T extends U ? (U extends T ? true : false) : false;
+type Includes<T extends readonly any[], U> = T extends [infer First, infer ...Rest] ? IsEqual<U, First> extends true ? true : Includes<Rest, U> : false;
+
+// Implementer le type utilitaire Exclude qui prend deux types et renvoie un type qui exclut toutes les valeurs du premier type qui sont assignables au deuxième type.
+type MyExclude<T, U> = T extends U ? never : T;
+
+// Implementer le type utilitaire NonNullable qui prend un type et renvoie un type qui exclut null et undefined.
+type MyNonNullable<T> = T extends null | undefined ? never : T;
+
+// implementer la version array.push
+type Push<T extends any[], U> = [...T, U];
+
+// implementer la version array.unshift
+type Unshift<T extends any[], U> = [U, ...T];
+
+// implementer la version array.shift
+type Shift<T extends any[]> = T extends [infer First, ...infer Rest] ? Rest : never;
+
+// implementer la version array.pop
+type Pop<T extends any[]> = T extends [...infer Rest, infer Last] ? Rest : never;
+
+// implementer la version array.slice
+type Slice<T extends any[], Start extends number, End extends number> = T extends [...infer Rest, ...infer Last] ? Rest extends {length: Start} ? Last extends {length: End} ? Rest : never : never : never;
+
+// implementer l'utility Type Parameters
+type MyParameters<T extends (...args: any[]) => any> = T extends  (...args: infer Args) => any ? Args : never;

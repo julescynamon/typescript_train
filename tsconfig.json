@@ -9,5 +9,8 @@
     },
     "files": [
         "src/app.ts"
+    ],
+    "include": [
+        "src/types/**/*"
     ]
 }
