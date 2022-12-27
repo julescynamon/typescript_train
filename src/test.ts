@@ -165,3 +165,38 @@ function a(arg: unknown) {
         arg.value = "hello world"
     }
 }
+
+// exercice de type
+
+// reproduire le type utilitaire Pick (selectioner seulement certaine clef pour renvoyer un objet qui correspond au clef indiquer)
+type MyPick<T, K extends keyof T> = {
+    [Key in K]: T[Key];
+} 
+
+// transformer un objet pour que toutes ces propriétées soit passer en readOnly
+type MyReadOnly<T> = {
+    +readonly [Key in keyof T]: T[Key];
+}
+
+// on a un tuple donc un tableau ou on connait toutes les valeur et on le transforme en un objet ou la clef correspond a la valeur
+type TupleToObject<T extends readonly PropertyKey[]> = {
+    [Key in T[number]]: Key
+}
+
+// avoir une fonction first qui sort le premier element d'un tableau
+type First<T extends any[]> = T extends {length: 0} ? never : T[0];
+
+// on passe un tableau et on doit recuperer la longueur de se tableau
+type Length<T extends readonly[]> = T extends {length infer Length} ? Length : never;
+
+// on recree le type Exclude de typescript pour exlure quelquechose d'un tableau
+type MyExclude<T, U> = T extends U ? never : T;
+
+// utilisation de Awaited qui est un type qui fonctionne avec les promesses
+type Awaited<T extends Promise<any>> = T extends Promise<infer U> ? U : T;
+
+// Implementer le type util If<C, T, F> qui accepte la condition C, une valeur vraie T et une valeur fausse F. On s'attend à ce que C soit soit vrai ou faux tandis que T et F peuvent être de n'importe quel type.
+type If<C extends boolean, T, F> = C extends true ? T : F;
+
+// impleter le type Concat pour concatainer 2 tableaux
+type Concat<T extends any[], U extends any[]> = [...T, ...U];
