@@ -3,7 +3,9 @@
         "outDir": "dist",
         "target": "ES2021",
         "noEmitOnError": true,
-        "strict": true
+        "strict": true,
+        "declaration": true,
+        "moduleResolution": "node"
     },
     "files": [
         "src/app.ts"
